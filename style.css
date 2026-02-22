@@ -1,0 +1,556 @@
+/* ============================================
+   HORSE — Global Retro Design System
+   ============================================
+   Surface: 1999
+   Infrastructure: 2026
+   ============================================ */
+
+/* --- Retro Palette --- */
+:root {
+    --bg-primary: #C0C0C0;
+    --bg-secondary: #808080;
+    --bg-dark: #000080;
+    --bg-accent: #008080;
+    --bg-warning: #FFFF00;
+    --bg-hot: #FF00FF;
+
+    --text-primary: #000000;
+    --text-secondary: #333333;
+    --text-light: #FFFFFF;
+    --text-muted: #666666;
+
+    --link-color: #0000FF;
+    --link-visited: #800080;
+    --link-hover: #FF0000;
+    --link-active: #FF0000;
+
+    --border-color: #000000;
+    --border-light: #FFFFFF;
+    --border-dark: #404040;
+
+    --font-body: 'Times New Roman', Times, serif;
+    --font-heading: Verdana, Geneva, sans-serif;
+    --font-mono: 'Courier New', Courier, monospace;
+    --font-comic: 'Comic Sans MS', 'Comic Sans', cursive;
+
+    --bevel-light: #DFDFDF;
+    --bevel-dark: #808080;
+}
+
+/* --- Reset (minimal, not soulless) --- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* --- Typography --- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    margin-top: 0.5em;
+    margin-bottom: 0.25em;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+h3 {
+    font-size: 18px;
+}
+
+h4 {
+    font-size: 16px;
+}
+
+p {
+    margin: 0 0 1em 0;
+}
+
+small {
+    font-size: 12px;
+}
+
+/* --- Links (aggressive, retro) --- */
+a {
+    color: var(--link-color);
+    text-decoration: underline;
+}
+
+a:visited {
+    color: var(--link-visited);
+}
+
+a:hover {
+    color: var(--link-hover);
+}
+
+a:active {
+    color: var(--link-active);
+}
+
+/* --- Horizontal Rules --- */
+hr {
+    border: none;
+    border-top: 2px solid var(--border-color);
+    margin: 1em 0;
+}
+
+hr.fancy {
+    border-top: 1px dashed var(--text-muted);
+}
+
+hr.thick {
+    border-top: 4px double var(--border-color);
+}
+
+/* --- Layout Container --- */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 8px 16px;
+}
+
+.container-wide {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 8px 16px;
+}
+
+.container-full {
+    width: 100%;
+    padding: 8px 16px;
+}
+
+/* --- Beveled Box (Win95 style) --- */
+.beveled {
+    border: 2px solid;
+    border-color: var(--bevel-light) var(--bevel-dark) var(--bevel-dark) var(--bevel-light);
+    padding: 8px;
+    background: var(--bg-primary);
+}
+
+.beveled-inset {
+    border: 2px solid;
+    border-color: var(--bevel-dark) var(--bevel-light) var(--bevel-light) var(--bevel-dark);
+    padding: 8px;
+    background: var(--bg-primary);
+}
+
+/* --- Buttons (chunky, beveled) --- */
+button,
+.btn {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 14px;
+    padding: 4px 16px;
+    border: 2px solid;
+    border-color: var(--bevel-light) var(--bevel-dark) var(--bevel-dark) var(--bevel-light);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+button:active,
+.btn:active {
+    border-color: var(--bevel-dark) var(--bevel-light) var(--bevel-light) var(--bevel-dark);
+}
+
+/* --- Form Inputs (chunky) --- */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    padding: 4px 6px;
+    border: 2px solid;
+    border-color: var(--bevel-dark) var(--bevel-light) var(--bevel-light) var(--bevel-dark);
+    background: #FFFFFF;
+    color: var(--text-primary);
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* --- Tables (visible borders, like god intended) --- */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    border: 1px solid var(--border-color);
+    padding: 4px 8px;
+    text-align: left;
+    font-size: 14px;
+}
+
+th {
+    background: var(--bg-dark);
+    color: var(--text-light);
+    font-family: var(--font-heading);
+}
+
+/* --- Utility Classes --- */
+
+/* Text alignment */
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+/* Font overrides */
+.font-comic {
+    font-family: var(--font-comic);
+}
+
+.font-mono {
+    font-family: var(--font-mono);
+}
+
+.font-heading {
+    font-family: var(--font-heading);
+}
+
+/* Background utilities */
+.bg-dark {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+}
+
+.bg-teal {
+    background-color: var(--bg-accent);
+    color: var(--text-light);
+}
+
+.bg-silver {
+    background-color: var(--bg-primary);
+}
+
+.bg-yellow {
+    background-color: var(--bg-warning);
+}
+
+.bg-hot {
+    background-color: var(--bg-hot);
+    color: var(--text-light);
+}
+
+.bg-white {
+    background-color: #FFFFFF;
+}
+
+.bg-black {
+    background-color: #000000;
+    color: var(--text-light);
+}
+
+/* Borders */
+.bordered {
+    border: 1px solid var(--border-color);
+}
+
+.bordered-thick {
+    border: 2px solid var(--border-color);
+}
+
+/* Spacing */
+.pad-sm {
+    padding: 4px;
+}
+
+.pad-md {
+    padding: 8px;
+}
+
+.pad-lg {
+    padding: 16px;
+}
+
+.mar-sm {
+    margin: 4px;
+}
+
+.mar-md {
+    margin: 8px;
+}
+
+.mar-lg {
+    margin: 16px;
+}
+
+/* --- Retro Effect: Marquee (CSS-only) --- */
+.marquee {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.marquee>* {
+    display: inline-block;
+    animation: marquee-scroll 12s linear infinite;
+}
+
+@keyframes marquee-scroll {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* --- Retro Effect: Blink --- */
+.blink {
+    animation: blink-effect 1s step-end infinite;
+}
+
+@keyframes blink-effect {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+/* --- Retro Effect: Rainbow text --- */
+.rainbow {
+    animation: rainbow-shift 3s linear infinite;
+}
+
+@keyframes rainbow-shift {
+    0% {
+        color: #FF0000;
+    }
+
+    16% {
+        color: #FF8800;
+    }
+
+    33% {
+        color: #FFFF00;
+    }
+
+    50% {
+        color: #00FF00;
+    }
+
+    66% {
+        color: #0000FF;
+    }
+
+    83% {
+        color: #8800FF;
+    }
+
+    100% {
+        color: #FF0000;
+    }
+}
+
+/* --- Retro Effect: Under Construction stripe --- */
+.under-construction {
+    background: repeating-linear-gradient(45deg,
+            #FFFF00,
+            #FFFF00 10px,
+            #000000 10px,
+            #000000 20px);
+    padding: 8px 16px;
+    text-align: center;
+    font-family: var(--font-heading);
+    font-weight: bold;
+    font-size: 14px;
+    color: #FFFF00;
+    text-shadow: 1px 1px 0 #000;
+}
+
+/* --- Retro Effect: Starfield/tiled background helper --- */
+.tiled-bg {
+    background-repeat: repeat;
+    background-size: auto;
+}
+
+/* --- Webring-style nav bar --- */
+.webring {
+    text-align: center;
+    padding: 4px;
+    font-size: 12px;
+    font-family: var(--font-heading);
+    background: var(--bg-dark);
+    color: var(--text-light);
+}
+
+.webring a {
+    color: #00FFFF;
+}
+
+.webring a:visited {
+    color: #AAFFFF;
+}
+
+/* --- Status bar (bottom info strip) --- */
+.status-bar {
+    border-top: 2px solid;
+    border-color: var(--bevel-dark) var(--bevel-light) var(--bevel-light) var(--bevel-dark);
+    background: var(--bg-primary);
+    padding: 2px 8px;
+    font-family: var(--font-heading);
+    font-size: 11px;
+    color: var(--text-secondary);
+    display: flex;
+    justify-content: space-between;
+}
+
+/* --- Visitor Counter (fake, but authentic) --- */
+.visitor-counter {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    background: #000000;
+    color: #00FF00;
+    padding: 2px 8px;
+    border: 1px solid var(--border-color);
+    letter-spacing: 2px;
+}
+
+/* ============================================
+   RESPONSIVE — The Modern Secret
+   ============================================
+   The site looks ancient.
+   But it works on your phone.
+   ============================================ */
+
+/* Tablet */
+@media screen and (max-width: 768px) {
+
+    .container,
+    .container-wide {
+        max-width: 100%;
+        padding: 8px 12px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    th,
+    td {
+        padding: 3px 6px;
+    }
+
+    .status-bar {
+        flex-direction: column;
+        text-align: center;
+        gap: 2px;
+    }
+
+    .hide-mobile {
+        display: none;
+    }
+}
+
+/* Phone */
+@media screen and (max-width: 480px) {
+    body {
+        font-size: 15px;
+    }
+
+    .container,
+    .container-wide,
+    .container-full {
+        padding: 4px 8px;
+    }
+
+    h1 {
+        font-size: 18px;
+    }
+
+    h2 {
+        font-size: 16px;
+    }
+
+    h3 {
+        font-size: 15px;
+    }
+
+    button,
+    .btn {
+        padding: 6px 12px;
+        font-size: 14px;
+        width: 100%;
+        text-align: center;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    textarea {
+        width: 100%;
+    }
+
+    .marquee>* {
+        animation-duration: 8s;
+    }
+}
+
+/* --- Print (for the 3 people who still print web pages) --- */
+@media print {
+
+    .marquee>*,
+    .blink,
+    .rainbow {
+        animation: none !important;
+    }
+
+    body {
+        background: #FFFFFF;
+        color: #000000;
+    }
+}
