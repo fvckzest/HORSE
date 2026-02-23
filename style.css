@@ -322,7 +322,7 @@ th {
 
 .marquee>* {
     display: inline-block;
-    animation: marquee-scroll 12s linear infinite;
+    animation: marquee-scroll 24s linear infinite;
 }
 
 @keyframes marquee-scroll {
@@ -536,7 +536,7 @@ th {
     }
 
     .marquee>* {
-        animation-duration: 8s;
+        animation-duration: 16s;
     }
 }
 
