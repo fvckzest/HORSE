@@ -399,8 +399,8 @@ th {
     font-family: var(--font-heading);
     font-weight: bold;
     font-size: 14px;
-    color: #FFFF00;
-    text-shadow: 1px 1px 0 #000;
+    color: #ffffff;
+    text-shadow: 2px 2px 0 #000;
 }
 
 /* --- Retro Effect: Starfield/tiled background helper --- */
