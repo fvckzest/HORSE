@@ -318,16 +318,20 @@ th {
 .marquee {
     overflow: hidden;
     white-space: nowrap;
+    display: flex;
 }
 
 .marquee>* {
-    display: inline-block;
+    flex-shrink: 0;
+    min-width: 100%;
+    display: flex;
+    justify-content: space-around;
     animation: marquee-scroll 24s linear infinite;
 }
 
 @keyframes marquee-scroll {
     0% {
-        transform: translateX(100%);
+        transform: translateX(0);
     }
 
     100% {
