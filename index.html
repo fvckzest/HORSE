@@ -37,17 +37,9 @@
                         <li><a href="pages/void.html">enter the void</a></li>
                         <li><a href="pages/diet-coke.html">buy me diet coke</a></li>
                         <li><a href="pages/links.html">webring portal</a></li>
-                        <li><a href="pages/bsides.html">b-sides & trash</a></li>
-                        <li><a href="#">my neopets</a></li>
+                        <li><a href="#">dj horsepower</a></li>
                         <li><a href="#">curse words</a></li>
                         <li><a href="#">html tutorials</a></li>
-                        <li><a href="#">midi soundtrack rips</a></li>
-                        <li><a href="#">free cursors</a></li>
-                        <li><a href="#">guestbook</a></li>
-                        <li><a href="#">webcams (offline)</a></li>
-                        <li><a href="#">conspiracy theories</a></li>
-                        <li><a href="#">flash games</a></li>
-                        <li><a href="#">winamp skins</a></li>
                         <li><a href="#">about me</a></li>
                     </ul>
                 </td>
@@ -69,7 +61,9 @@
                         <hr class="fancy">
                         <h4 class="font-heading">[CURRENT MOOD: QUEASY]</h4>
                         <p class="font-mono text-muted">
-                            music playing: <i>darude - sandstorm.mp3</i>
+                            music playing: <a
+                                href="https://www.youtube.com/watch?v=XVekJTmtwqM&list=RDXVekJTmtwqM&start_radio=1"
+                                target="_blank"><i>"Godspeed You Black Emperor" - The Dead Flag Blues</i></a>
                         </p>
                     </div>
                 </td>
@@ -77,6 +71,24 @@
         </table>
 
         <div data-component="ad-1"></div>
+
+        <!-- -= THE CANVAS / GALLERY =- -->
+        <div class="mar-md beveled bg-silver" style="padding: 12px;">
+            <h3 class="font-heading bg-dark text-center" style="margin: -12px -12px 12px -12px; padding: 4px;">
+                -= ART_LOG / GALLERIA =-</h3>
+            <div style="text-align: center; margin-bottom: 8px; margin-top: 8px;">
+                <button id="btn-gallery-prev" class="font-mono bg-silver"
+                    style="border: 2px outset #eee; cursor: pointer; padding: 4px 16px;">&lt;&lt;
+                    SCROLL_LEFT</button>
+                <button id="btn-gallery-next" class="font-mono bg-silver"
+                    style="border: 2px outset #eee; cursor: pointer; padding: 4px 16px;">SCROLL_RIGHT
+                    &gt;&gt;</button>
+            </div>
+            <div id="gallery-container" class="pad-md bg-white beveled-inset"
+                style="white-space: nowrap; overflow-x: hidden; text-align: left;">
+                <!-- Drawings loaded dynamically here from drawings.json -->
+            </div>
+        </div>
 
         <div class="marquee bg-hot mar-lg bordered" style="padding: 4px; font-weight: bold;">
             <span>ZEST GXD IS REAL ~~~ #HORSEPOWER #HORSEPOWER #HORSEPOWER ~~~ NO ZEST = LIGHT BAG ~~~ GZTL 4L
@@ -115,7 +127,7 @@
 
     <div data-component="footer"></div>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=4"></script>
 </body>
 
 </html>

@@ -1,0 +1,24 @@
+[
+    {
+        "file": "/assets/images/saveas.png",
+        "desc": "digital artifact #001",
+        "alt": "Save As dialog box",
+        "type": "image"
+    },
+    {
+        "type": "placeholder",
+        "desc": "[ EMPTY_SLOT ]"
+    },
+    {
+        "type": "placeholder",
+        "desc": "[ EMPTY_SLOT ]"
+    },
+    {
+        "type": "placeholder",
+        "desc": "[ EMPTY_SLOT ]"
+    },
+    {
+        "type": "placeholder",
+        "desc": "[ EMPTY_SLOT ]"
+    }
+]

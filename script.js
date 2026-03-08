@@ -110,6 +110,114 @@
         });
     }
 
+    /* --- Gallery Loader --- */
+    function initGallery() {
+        var container = document.getElementById('gallery-container');
+        if (!container) return;
+
+        var prevBtn = document.getElementById('btn-gallery-prev');
+        var nextBtn = document.getElementById('btn-gallery-next');
+
+        function getScrollAmount() {
+            return container.firstElementChild ? container.firstElementChild.offsetWidth + 16 : 300;
+        }
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', function () {
+                container.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+            });
+        }
+        if (nextBtn) {
+            nextBtn.addEventListener('click', function () {
+                container.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+            });
+        }
+
+        var basePath = getBasePath();
+        fetch(basePath + 'assets/data/drawings.json')
+            .then(function (res) {
+                if (!res.ok) throw new Error('Could not load drawings.json');
+                return res.json();
+            })
+            .then(function (data) {
+                container.innerHTML = '';
+                data.forEach(function (item) {
+                    var wrapper = document.createElement('div');
+                    wrapper.className = 'beveled-inset bg-white';
+                    wrapper.style.display = 'inline-block';
+                    wrapper.style.margin = '8px';
+                    wrapper.style.verticalAlign = 'top';
+                    wrapper.style.width = 'calc(50% - 24px)';
+                    wrapper.style.boxSizing = 'border-box';
+                    wrapper.style.whiteSpace = 'normal';
+
+                    if (item.type === 'placeholder' || !item.file) {
+                        wrapper.style.height = 'auto';
+                        wrapper.style.aspectRatio = '1 / 1';
+                        wrapper.style.position = 'relative';
+
+                        var inner = document.createElement('div');
+                        inner.style.position = 'absolute';
+                        inner.style.top = '50%';
+                        inner.style.left = '50%';
+                        inner.style.transform = 'translate(-50%, -50%)';
+                        inner.style.color = '#ccc';
+                        inner.style.fontFamily = 'Courier New, monospace';
+                        inner.style.fontSize = '12px';
+                        inner.style.textAlign = 'center';
+                        inner.textContent = item.desc || '[ EMPTY_SLOT ]';
+
+                        wrapper.appendChild(inner);
+                    } else {
+                        wrapper.style.padding = '8px';
+
+                        var img = document.createElement('img');
+                        var fileName = item.file.split('/').pop();
+                        img.src = basePath + 'assets/images/' + fileName;
+                        img.alt = item.alt || 'drawing';
+                        img.style.display = 'block';
+                        img.style.width = '100%';
+                        img.style.height = 'auto';
+                        img.style.border = '1px solid black';
+
+                        var textContainer = document.createElement('div');
+                        textContainer.className = 'font-mono text-muted';
+                        textContainer.style.fontSize = '11px';
+                        textContainer.style.marginTop = '4px';
+                        textContainer.style.textAlign = 'left';
+                        textContainer.style.whiteSpace = 'normal';
+                        textContainer.innerHTML = '<b>FILE:</b> ' + fileName + '<br><b>DESC:</b> ' + (item.desc || '');
+
+                        wrapper.appendChild(img);
+                        wrapper.appendChild(textContainer);
+                    }
+                    container.appendChild(wrapper);
+                });
+            })
+            .catch(function (err) {
+                console.warn('[horse] Gallery error:', err.message);
+                container.innerHTML = '<div style="color:red; font-family:monospace; padding:8px;">ERROR LOADING SYS_DIGITAL_ARTIFACTS</div>';
+            });
+    }
+
+    /* --- Dead Link Interceptor ---
+       Catches clicks on a[href="#"] or empty hrefs
+       and redirects to 404.html
+    */
+    function initDeadLinks() {
+        document.body.addEventListener('click', function (e) {
+            var anchor = e.target.closest('a');
+            if (anchor) {
+                var href = anchor.getAttribute('href');
+                if (href === '#' || href === '') {
+                    e.preventDefault();
+                    var basePath = getBasePath();
+                    window.location.href = basePath + '404.html';
+                }
+            }
+        });
+    }
+
     /* --- Init on DOM Ready --- */
     document.addEventListener('DOMContentLoaded', function () {
         loadComponents();
@@ -117,6 +225,8 @@
         initYear();
         initCursors();
         initTooltips();
+        initGallery();
+        initDeadLinks();
     });
 
 })();
