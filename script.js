@@ -25,7 +25,7 @@
 
         slots.forEach(function (slot) {
             var name = slot.getAttribute('data-component');
-            var url = basePath + 'components/' + name + '.html';
+            var url = basePath + 'components/' + name + '.html?v=' + Date.now();
 
             fetch(url)
                 .then(function (res) {
@@ -134,7 +134,7 @@
         }
 
         var basePath = getBasePath();
-        fetch(basePath + 'assets/data/drawings.json')
+        fetch(basePath + 'assets/data/drawings.json?v=' + Date.now())
             .then(function (res) {
                 if (!res.ok) throw new Error('Could not load drawings.json');
                 return res.json();

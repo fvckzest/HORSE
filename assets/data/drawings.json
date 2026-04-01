@@ -6,8 +6,10 @@
         "type": "image"
     },
     {
-        "type": "placeholder",
-        "desc": "[ EMPTY_SLOT ]"
+        "file": "/assets/images/invoice.png",
+        "desc": "digital artifact #002",
+        "alt": "Invoice",
+        "type": "image"
     },
     {
         "type": "placeholder",

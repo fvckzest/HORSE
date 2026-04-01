@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZEST GUESTBOOK</title>
+    <link rel="stylesheet" href="../style.css">
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+
+<body>
+    <!-- This injects the global header -->
+    <div data-component="header"></div>
+
+    <main class="container">
+        <div class="beveled bg-silver mar-lg text-center" style="padding: 16px;">
+            <h2 class="font-comic rainbow blink" style="margin-top: 0;">~~ SIGN MY GUESTBOOK ~~</h2>
+            <p class="font-mono text-muted">
+                Leave a message after the beep. <br>
+                (HTML is ALLOWED and ENCOURAGED)
+            </p>
+            <hr class="thick">
+
+            <!-- Guestbook Form -->
+            <div class="beveled-inset bg-white"
+                style="text-align: left; margin: 16px auto; max-width: 500px; padding: 16px;">
+                <form onsubmit="alert('SYSTEM ERROR: YOU THOUGHT!'); return false;">
+                    <table width="100%" border="0" cellpadding="4" cellspacing="0" class="font-mono">
+                        <tr>
+                            <td width="30%"><strong>NAME:</strong></td>
+                            <td><input type="text" class="beveled-inset bg-silver"
+                                    style="width: 100%; box-sizing: border-box; padding: 4px;" required></td>
+                        </tr>
+                        <tr>
+                            <td><strong>WEBSITE:</strong></td>
+                            <td><input type="text" value="http://" class="beveled-inset bg-silver"
+                                    style="width: 100%; box-sizing: border-box; padding: 4px;"></td>
+                        </tr>
+                        <tr>
+                            <td valign="top"><strong>MESSAGE:</strong></td>
+                            <td><textarea class="beveled-inset bg-silver" rows="5"
+                                    style="width: 100%; box-sizing: border-box; padding: 4px;" required></textarea></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td style="text-align: right; padding-top: 8px;">
+                                <button type="submit" class="btn font-heading bg-dark text-white">SUBMIT ENTRY</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+
+            <hr class="thick">
+
+            <!-- Fake Guestbook Entries -->
+            <div style="text-align: left; margin-top: 24px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                <h3 class="font-heading text-center"
+                    style="background: navy; color: white; padding: 4px; margin-bottom: 16px;">-= RECENT ENTRIES =-</h3>
+
+                <div class="beveled-inset bg-white" style="margin-bottom: 16px;">
+                    <table width="100%" border="0" cellpadding="8" cellspacing="0">
+                        <tr style="background: #008080; color: white;">
+                            <td><b class="font-heading">xX_DarkShadow_Xx</b></td>
+                            <td align="right" class="font-mono" style="font-size: 12px;">2003-04-12 14:32:01</td>
+                        </tr>
+                        <tr class="font-mono text-muted">
+                            <td colspan="2">First! Nice site man, love the horse. Check out my DragonBall Z fansite! I
+                                added you to my webring.</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="beveled-inset bg-white" style="margin-bottom: 16px;">
+                    <table width="100%" border="0" cellpadding="8" cellspacing="0">
+                        <tr style="background: maroon; color: white;">
+                            <td><b class="font-heading">1337_h4x0r</b></td>
+                            <td align="right" class="font-mono" style="font-size: 12px;">2006-09-01 02:14:59</td>
+                        </tr>
+                        <tr class="font-mono text-muted">
+                            <td colspan="2">
+                                <marquee scrollamount="15" style="color: red; font-weight: bold;">L0L R0FLCOPTER
+                                    PWNED!!!1!</marquee>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="beveled-inset bg-white" style="margin-bottom: 16px;">
+                    <table width="100%" border="0" cellpadding="8" cellspacing="0">
+                        <tr style="background: #333; color: lime;">
+                            <td><b class="font-heading">horse_lover_99</b></td>
+                            <td align="right" class="font-mono" style="font-size: 12px;">2026-02-14 08:00:00</td>
+                        </tr>
+                        <tr class="font-mono text-muted">
+                            <td colspan="2">Honestly, the kerning on the H1 tag could be better, but the pure
+                                unadulterated chaos makes up for it. I rate this 27 out of 34.</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <br>
+            <div class="text-center mar-md">
+                <a href="../index.html" class="btn font-mono">« Return to Homepage</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- This injects the global footer -->
+    <div data-component="footer"></div>
+
+    <script src="../script.js?v=6"></script>
+</body>
+
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DJ HORSEPOWER TAPE ARCHIVE</title>
+    <link rel="stylesheet" href="../style.css">
+
+    <!-- Required: Soundcloud API to control the hidden iframe -->
+    <script src="https://w.soundcloud.com/player/api.js"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
+
+    <style>
+        /* Specific retro styling for the player */
+        .player-status {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+        }
+
+        th {
+            border-color: #000;
+        }
+
+        td {
+            border-color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Global Header -->
+    <div data-component="header"></div>
+
+    <main class="container">
+        <div class="beveled bg-silver mar-lg text-center" style="padding: 16px;">
+            <h2 class="font-comic"
+                style="color: lime; background: black; display: inline-block; padding: 4px; margin-top: 0;">-= DJ
+                HORSEPOWER =-</h2>
+            <p class="font-mono text-muted text-center" style="margin-bottom: 24px;">
+                AUDIO WING. THE RAW SONIC NOTEBOOK.<br>
+                STREAMING DIRECTLY VIA SOUNDCLOUD MAINFRAME.
+            </p>
+
+            <hr class="thick">
+
+            <!-- Fake Winamp Player UI -->
+            <div id="retro-player" class="beveled-inset bg-dark p-4"
+                style="margin: 16px auto; max-width: 550px; color: #0f0; border: 4px solid #808080;">
+                <table width="100%" border="0" cellpadding="4">
+                    <tr>
+                        <td colspan="2" style="background: black; padding: 8px; border: 2px inset #555;">
+                            <div
+                                style="font-family: 'Courier New', monospace; font-size: 14px; font-weight: bold; overflow: hidden; white-space: nowrap;">
+                                <marquee id="now-playing" scrollamount="5">READY - NO TAPE LOADED [ SELECT A TRACK BELOW
+                                    ]</marquee>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="30%" align="center" style="padding-top: 12px;">
+                            <button class="btn font-mono bg-silver" id="global-stop"
+                                style="color: red; font-weight: bold;">[ STOP ]</button>
+                        </td>
+                        <td width="70%" align="right" style="padding-top: 12px;" class="player-status">
+                            SYSTEM STATUS: <span id="player-status" class="blink" style="color: white;">IDLE</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Fake Tracklist -->
+            <div class="beveled bg-white mar-md"
+                style="padding: 12px; max-width: 650px; margin: 0 auto; margin-bottom: 24px;">
+                <h3 class="font-heading"
+                    style="background: navy; color: white; padding: 4px; margin-top: 0; text-align: center;">-= TAPE
+                    ARCHIVE =-</h3>
+
+                <table width="100%" border="1" cellpadding="8" cellspacing="0" class="font-mono text-left"
+                    style="border-collapse: collapse; background: #fff; color: #000;">
+                    <tbody id="tracklist-tbody">
+                        <tr style="background: #ccc; text-align: left;">
+                            <th width="120px">ACTION</th>
+                            <th>FILENAME</th>
+                            <th width="80px">RUNTIME</th>
+                        </tr>
+                        <!-- Content dynamically injected here from tracks.json -->
+                    </tbody>
+                </table>
+                <div class="text-left font-mono text-muted"
+                    style="font-size: 12px; margin-top: 16px; border: 1px dotted #888; padding: 8px;">
+                    <b>WEBMASTER INSTRUCTIONS:</b><br>
+                    To add your own tracks, open <code>assets/data/tracks.json</code> and add your direct Soundcloud
+                    links. The retro player will handle the rest!
+                </div>
+            </div>
+
+            <br>
+            <a href="../index.html" class="btn font-mono">« Return to System Log</a>
+        </div>
+    </main>
+
+    <!-- Hidden SoundCloud Player Iframe -->
+    <!-- It has to load an initial valid track to work properly via the Widget API -->
+    <iframe id="sc-widget"
+        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/34019569&auto_play=false&visual=false"
+        width="0" height="0" frameborder="0" style="display:none;" allow="autoplay"></iframe>
+
+    <div data-component="footer"></div>
+
+    <script src="../script.js?v=6"></script>
+
+    <!-- Custom Retro Player Controller -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var scIframe = document.getElementById('sc-widget');
+            var widget = SC.Widget(scIframe);
+
+            var nowPlaying = document.getElementById('now-playing');
+            var statusInd = document.getElementById('player-status');
+            var currentPlayBtn = null;
+
+            // Widget Events
+            widget.bind(SC.Widget.Events.PLAY, function () {
+                statusInd.textContent = "PLAYING";
+                statusInd.style.color = "lime";
+            });
+
+            widget.bind(SC.Widget.Events.PAUSE, function () {
+                statusInd.textContent = "PAUSED";
+                statusInd.style.color = "yellow";
+            });
+
+            widget.bind(SC.Widget.Events.FINISH, function () {
+                statusInd.textContent = "IDLE";
+                statusInd.style.color = "white";
+                nowPlaying.textContent = "TAPE FINISHED - PLEASE REWIND";
+                if (currentPlayBtn) {
+                    currentPlayBtn.textContent = "[ PLAY ]";
+                    currentPlayBtn.style.color = "";
+                }
+                currentPlayBtn = null;
+            });
+
+            // Load tracks from JSON
+            var tracklistBody = document.getElementById('tracklist-tbody');
+            fetch('../assets/data/tracks.json?v=' + Date.now())
+                .then(function (res) { return res.json(); })
+                .then(function (data) {
+                    data.forEach(function (track) {
+                        var tr = document.createElement('tr');
+
+                        if (track.type === 'placeholder') {
+                            tr.style.color = '#ccc';
+                            tr.innerHTML = '<td align="center"></td><td>[ EMPTY_SLOT ]</td><td>--:--</td>';
+                        } else {
+                            tr.innerHTML =
+                                '<td align="center"><button class="btn font-mono play-btn bg-silver" ' +
+                                'data-title="' + track.title + '" ' +
+                                'data-url="' + track.url + '" ' +
+                                'style="cursor: pointer;">[ PLAY ]</button></td>' +
+                                '<td><i>' + track.title + '</i></td>' +
+                                '<td>' + track.length + '</td>';
+                        }
+                        tracklistBody.appendChild(tr);
+                    });
+
+                    // Attach events to the newly created buttons
+                    var playBtns = document.querySelectorAll('.play-btn');
+                    playBtns.forEach(function (btn) {
+                        btn.addEventListener('click', function () {
+                            var trackUrl = this.getAttribute('data-url');
+                            var trackTitle = this.getAttribute('data-title');
+
+                            // If clicking the same button that is already playing, pause it.
+                            if (currentPlayBtn === this && this.textContent === "[ PAUSE ]") {
+                                widget.pause();
+                                this.textContent = "[ PLAY ]";
+                                this.style.color = "";
+                                return;
+                            }
+
+                            // Reset previously active button
+                            if (currentPlayBtn && currentPlayBtn !== this) {
+                                currentPlayBtn.textContent = "[ PLAY ]";
+                                currentPlayBtn.style.color = "";
+                            }
+
+                            // Mark new button as active
+                            this.textContent = "[ PAUSE ]";
+                            this.style.color = "lime";
+                            currentPlayBtn = this;
+
+                            // Update Retro UI
+                            nowPlaying.textContent = ">>> LOADING TAPE: " + trackTitle + " ...";
+                            statusInd.textContent = "BUFFER...";
+                            statusInd.style.color = "orange";
+
+                            // Tell Soundcloud to load and immediately play the new URL
+                            widget.load(trackUrl, {
+                                auto_play: true,
+                                show_artwork: false,
+                                callback: function () {
+                                    nowPlaying.textContent = ">>> PLAYING: " + trackTitle + " || DIRECT STREAM ACTIVE";
+                                }
+                            });
+                        });
+                    });
+                })
+                .catch(function (err) {
+                    console.error("Failed to load tracks.json", err);
+                    tracklistBody.innerHTML += '<tr><td colspan="3" style="color:red; text-align:center;">SYSTEM ERROR: COULD NOT LOAD TAPE ARCHIVE</td></tr>';
+                });
+
+            // Global Stop Button
+            document.getElementById('global-stop').addEventListener('click', function () {
+                widget.pause();
+                widget.seekTo(0);
+                statusInd.textContent = "IDLE";
+                statusInd.style.color = "white";
+                nowPlaying.textContent = "READY - NO TAPE LOADED [ SELECT A TRACK BELOW ]";
+                if (currentPlayBtn) {
+                    currentPlayBtn.textContent = "[ PLAY ]";
+                    currentPlayBtn.style.color = "";
+                    currentPlayBtn = null;
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
