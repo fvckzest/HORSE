@@ -1,11 +1,11 @@
-import Link from "next/link";
 import Image from "next/image";
 import HeaderTerminal from "@/components/HeaderTerminal";
+import HomeLink from "@/components/HomeLink";
 
 export default function SiteHeader() {
   return (
     <header className="site-header" aria-label="primary">
-      <Link className="brand-lockup" href="/">
+      <HomeLink className="brand-lockup">
         <Image
           src="/assets/images/main-horse.gif"
           alt=""
@@ -17,7 +17,7 @@ export default function SiteHeader() {
           <strong>horsepower</strong>
           <small>horse mode / zest.art backend</small>
         </span>
-      </Link>
+      </HomeLink>
       <HeaderTerminal />
     </header>
   );

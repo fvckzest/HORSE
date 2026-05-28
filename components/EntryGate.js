@@ -2,9 +2,10 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { shouldSkipHomeIntro } from "@/lib/homeIntro";
 
 export default function EntryGate({ children }) {
-  const [entered, setEntered] = useState(false);
+  const [entered, setEntered] = useState(() => shouldSkipHomeIntro());
 
   if (entered) {
     return children;

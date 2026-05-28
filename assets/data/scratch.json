@@ -1,0 +1,79 @@
+[
+  {
+    "slug": "horse-mode-basement-light",
+    "title": "horse mode basement light",
+    "date": "2026-05-27",
+    "medium": "field note",
+    "status": "seed",
+    "mood": "green glow",
+    "image": "/assets/images/main-horse.gif",
+    "excerpt": "The frontsite stays polished. This room keeps the table messy, the light on, and the strange files within reach.",
+    "tags": [
+      "site",
+      "zest.art",
+      "backend"
+    ],
+    "body": [
+      "Playground archive means the entry can stay unfinished without feeling abandoned.",
+      "This is the layer for sketches, evidence, accidents, half-systems, and stray buttons that should not need a full project page to exist."
+    ]
+  },
+  {
+    "slug": "discarded-symbol-study",
+    "title": "discarded symbol study",
+    "date": "2026-05-27",
+    "medium": "image scrap",
+    "status": "working",
+    "mood": "pixel bruise",
+    "image": "/assets/images/skull.png",
+    "excerpt": "A recovered mark from the maybe-final folder, kept because the wrong version sometimes has better weather.",
+    "tags": [
+      "drawing",
+      "symbol",
+      "scrap"
+    ],
+    "body": [
+      "Some entries can be image-first: a scan, a screenshot, a texture, a failed icon, a thing that keeps looking back.",
+      "The note can be short. The archive should not punish smallness."
+    ]
+  },
+  {
+    "slug": "diet-coke-ledger",
+    "title": "diet coke ledger",
+    "date": "2026-05-27",
+    "medium": "receipt logic",
+    "status": "finished-ish",
+    "mood": "carbonated",
+    "image": "/assets/images/invoice.png",
+    "excerpt": "A tiny accounting system for emotional truth, unclear medicine, and extremely real line items.",
+    "tags": [
+      "artifact",
+      "system",
+      "joke"
+    ],
+    "href": "/pages/diet-coke.html",
+    "body": [
+      "Scratch entries can point outward to existing rooms. The archive becomes a switchboard, not just a list.",
+      "A single entry can be a thumbnail, a caption, and a door."
+    ]
+  },
+  {
+    "slug": "save-as-ritual",
+    "title": "save as ritual",
+    "date": "2026-05-27",
+    "medium": "interface relic",
+    "status": "open",
+    "mood": "desktop prayer",
+    "image": "/assets/images/saveas.png",
+    "excerpt": "A place to keep screenshots, old UI feelings, and the private ceremony of naming a file before it becomes real.",
+    "tags": [
+      "interface",
+      "archive",
+      "desktop"
+    ],
+    "body": [
+      "This format is useful for process notes: what the object is, why it was kept, what it might become.",
+      "The entry does not need closure. It needs coordinates."
+    ]
+  }
+]

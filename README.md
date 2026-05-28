@@ -31,9 +31,8 @@ The local app runs at `http://localhost:3000`.
 ## Routes
 
 - `/` - bare horse mode terminal
-- `/v1` - first-pass command center with panels, file previews, and exits
 - `/about` - orientation without killing the mystery
-- `/files` - local artifact directory
+- `/music` - uploaded audio directory
 - `/links` - exit portals and nearby rooms
 - `/_not-found` - themed lost-terminal 404
 

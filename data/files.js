@@ -6,7 +6,7 @@ export const fileFragments = [
     status: "open",
     excerpt:
       "Horse mode is not a brand extension. It is the basement light left on behind the gallery.",
-    href: "/files"
+    href: "/music"
   },
   {
     filename: "field_note_001.md",
@@ -15,7 +15,7 @@ export const fileFragments = [
     status: "warm",
     excerpt:
       "The visitor should know this is connected to zest.art, but not governed by the same rules.",
-    href: "/files"
+    href: "/music"
   },
   {
     filename: "discarded_symbol.png",
@@ -33,7 +33,7 @@ export const fileFragments = [
     status: "unstable",
     excerpt:
       "zest.art backend connection detected. front door clean. trapdoor active.",
-    href: "/files"
+    href: "/music"
   },
   {
     filename: "diet_coke_invoice.csv",

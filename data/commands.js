@@ -10,9 +10,14 @@ export const commandShortcuts = [
     description: "Explain the backend without sanding off the mystery."
   },
   {
-    command: "/files",
-    label: "files",
-    description: "Open the current artifact directory."
+    command: "/music",
+    label: "music",
+    description: "Open the uploaded audio directory."
+  },
+  {
+    command: "/scratch",
+    label: "scratch",
+    description: "Browse the playground archive."
   },
   {
     command: "/links",
@@ -36,7 +41,8 @@ export const commandResponses = {
     title: "available commands",
     lines: [
       "/about - what this place is",
-      "/files - artifact directory",
+      "/scratch - playground archive",
+      "/music - uploaded audio directory",
       "/links - exits and social portals",
       "/random - stray local transmission",
       "/exit - return to zest.art"
@@ -52,14 +58,23 @@ export const commandResponses = {
     href: "/about",
     cta: "open /about"
   },
-  "/files": {
-    title: "artifact directory mounted",
+  "/music": {
+    title: "music directory mounted",
     lines: [
-      "4 visible files, several sealed drawers, one suspicious placeholder.",
-      "open the directory for field notes, symbols, logs, and backend thoughts."
+      "uploaded .mp3 and .wav files collect here.",
+      "audio added through /add is routed away from scratch and into music."
     ],
-    href: "/files",
-    cta: "open /files"
+    href: "/music",
+    cta: "open /music"
+  },
+  "/scratch": {
+    title: "playground archive mounted",
+    lines: [
+      "sketches, image scraps, interface relics, and half-systems are visible.",
+      "entries can be tiny notes, connected rooms, or larger process pages."
+    ],
+    href: "/scratch",
+    cta: "open /scratch"
   },
   "/links": {
     title: "portal list",

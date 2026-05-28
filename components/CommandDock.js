@@ -1,6 +1,6 @@
 export default function CommandDock({ commands }) {
   function getHref(command) {
-    if (command === "/about" || command === "/files" || command === "/links") {
+    if (command === "/about" || command === "/music" || command === "/links") {
       return command;
     }
     if (command === "/exit") {

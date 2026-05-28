@@ -1,4 +1,5 @@
 import Link from "next/link";
+import HomeLink from "@/components/HomeLink";
 
 export default function NotFoundTerminal() {
   return (
@@ -17,8 +18,8 @@ export default function NotFoundTerminal() {
         </ul>
       </div>
       <div className="console-toolbar">
-        <Link href="/">/home</Link>
-        <Link href="/files">/files</Link>
+        <HomeLink>/home</HomeLink>
+        <Link href="/music">/music</Link>
         <Link href="/links">/links</Link>
       </div>
     </section>

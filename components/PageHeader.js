@@ -1,8 +1,8 @@
 export default function PageHeader({ eyebrow, title, description }) {
   return (
     <header className="page-header">
-      <p className="eyebrow">{eyebrow}</p>
-      <h1>{title}</h1>
+      <span className="eyebrow">{eyebrow}</span>
+      <strong>{title}</strong>
       <p>{description}</p>
     </header>
   );

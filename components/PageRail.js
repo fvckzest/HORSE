@@ -1,21 +1,26 @@
 import Link from "next/link";
+import HomeLink from "@/components/HomeLink";
 
 const pageLinks = [
   { href: "/", label: "/home" },
-  { href: "/v1", label: "/v1" },
   { href: "/about", label: "/about" },
-  { href: "/files", label: "/files" },
+  { href: "/scratch", label: "/scratch" },
+  { href: "/music", label: "/music" },
   { href: "/links", label: "/links" }
 ];
 
 export default function PageRail() {
   return (
     <nav className="page-rail" aria-label="page shortcuts">
-      {pageLinks.map((link) => (
-        <Link href={link.href} key={link.href}>
-          {link.label}
-        </Link>
-      ))}
+      {pageLinks.map((link) =>
+        link.href === "/" ? (
+          <HomeLink key={link.href}>{link.label}</HomeLink>
+        ) : (
+          <Link href={link.href} key={link.href}>
+            {link.label}
+          </Link>
+        )
+      )}
     </nav>
   );
 }

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { commandResponses } from "@/data/commands";
+import { skipHomeIntroOnce } from "@/lib/homeIntro";
 
 const commandOptions = [
   {
@@ -11,19 +12,19 @@ const commandOptions = [
     href: "/"
   },
   {
-    command: "/v1",
-    description: "full first-pass layout",
-    href: "/v1"
-  },
-  {
     command: "/about",
     description: "what this is",
     href: "/about"
   },
   {
-    command: "/files",
-    description: "artifact directory",
-    href: "/files"
+    command: "/scratch",
+    description: "playground archive",
+    href: "/scratch"
+  },
+  {
+    command: "/music",
+    description: "audio directory",
+    href: "/music"
   },
   {
     command: "/links",
@@ -49,6 +50,7 @@ export default function HeaderTerminal() {
   const [value, setValue] = useState("");
   const [status, setStatus] = useState("listening");
   const [isFocused, setIsFocused] = useState(false);
+  const [highlightedIndex, setHighlightedIndex] = useState(0);
 
   const matchingOptions = commandOptions.filter((option) =>
     option.command.startsWith(value.trim().toLowerCase())
@@ -57,8 +59,7 @@ export default function HeaderTerminal() {
     isFocused && value.trim().startsWith("/") && matchingOptions.length > 0;
 
   function runCommand(rawCommand) {
-    const command = rawCommand.trim().toLowerCase();
-    if (!command) return;
+    const command = rawCommand.trim().toLowerCase() || "/home";
 
     const option = commandOptions.find((item) => item.command === command);
 
@@ -66,6 +67,10 @@ export default function HeaderTerminal() {
       setStatus(`${command} mounted`);
       setValue("");
       setIsFocused(false);
+      setHighlightedIndex(0);
+      if (option.href === "/") {
+        skipHomeIntroOnce();
+      }
       router.push(option.href);
       return;
     }
@@ -80,17 +85,46 @@ export default function HeaderTerminal() {
       setStatus(commandResponses[command].title);
       setValue("");
       setIsFocused(false);
+      setHighlightedIndex(0);
       return;
     }
 
     setStatus("unknown command");
     setValue("");
     setIsFocused(false);
+    setHighlightedIndex(0);
   }
 
   function handleSubmit(event) {
     event.preventDefault();
+    if (showSuggestions && matchingOptions[highlightedIndex]) {
+      runCommand(matchingOptions[highlightedIndex].command);
+      return;
+    }
     runCommand(value);
+  }
+
+  function handleKeyDown(event) {
+    if (!showSuggestions) return;
+
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+      setHighlightedIndex((current) => (current + 1) % matchingOptions.length);
+    }
+
+    if (event.key === "ArrowUp") {
+      event.preventDefault();
+      setHighlightedIndex(
+        (current) =>
+          (current - 1 + matchingOptions.length) % matchingOptions.length
+      );
+    }
+
+    if (event.key === "Escape") {
+      event.preventDefault();
+      setIsFocused(false);
+      setHighlightedIndex(0);
+    }
   }
 
   return (
@@ -101,13 +135,25 @@ export default function HeaderTerminal() {
         <input
           id="header-command"
           value={value}
-          onChange={(event) => setValue(event.target.value)}
-          onFocus={() => setIsFocused(true)}
+          onChange={(event) => {
+            setValue(event.target.value);
+            setHighlightedIndex(0);
+          }}
+          onFocus={() => {
+            setIsFocused(true);
+            setHighlightedIndex(0);
+          }}
           onBlur={() => window.setTimeout(() => setIsFocused(false), 120)}
-          placeholder="/help"
+          onKeyDown={handleKeyDown}
+          placeholder="/home"
           autoComplete="off"
           aria-autocomplete="list"
           aria-controls="header-command-suggestions"
+          aria-activedescendant={
+            showSuggestions
+              ? `header-command-option-${highlightedIndex}`
+              : undefined
+          }
         />
         <button type="submit">run</button>
       </div>
@@ -118,13 +164,16 @@ export default function HeaderTerminal() {
           role="listbox"
           aria-label="available commands"
         >
-          {matchingOptions.map((option) => (
+          {matchingOptions.map((option, index) => (
             <button
               key={option.command}
+              id={`header-command-option-${index}`}
+              className={index === highlightedIndex ? "is-active" : undefined}
               type="button"
               role="option"
-              aria-selected={false}
+              aria-selected={index === highlightedIndex}
               onMouseDown={(event) => event.preventDefault()}
+              onMouseEnter={() => setHighlightedIndex(index)}
               onClick={() => runCommand(option.command)}
             >
               <span>{option.command}</span>

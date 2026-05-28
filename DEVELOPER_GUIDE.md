@@ -8,7 +8,7 @@ interaction patterns.
 
 - `app/layout.js` defines global metadata and the shared document shell.
 - `app/page.js` is the primary horse mode command center.
-- `app/about/page.js`, `app/files/page.js`, and `app/links/page.js` are the
+- `app/about/page.js`, `app/music/page.js`, and `app/links/page.js` are the
   first-pass content routes.
 - `app/not-found.js` renders the lost-terminal 404.
 - `components/` contains small reusable UI pieces.
